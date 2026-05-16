@@ -11,7 +11,8 @@
 3. [Запуск](#запуск)
 4. [Данные](#данные)
 5. [Результаты](#результаты)
-6. [Отчёт](#отчёт)
+6. [Линтеры](#линтеры)
+7. [Отчёт](#отчёт)
 
 ## Описание задачи
 
@@ -105,6 +106,23 @@ docker run --rm -p 8888:8888 returns-project
 | CatBoost (основной прогон) | `ROC-AUC: 0.8390` | `iterations=1000`, `depth=6`, `learning_rate=0.05` |
 | CatBoost (порог 0.4) | `F1: 0.7813`, `Precision: 0.7043`, `Recall: 0.8774`, `Accuracy: 0.7375`, `PR-AUC: 0.8609` | Настройка порога классификации |
 | TabM (обученная) | `ROC-AUC: 0.8418`, `F1: 0.7798`, `Accuracy: 0.7563` | Лучший `ROC-AUC` среди указанных |
+
+## Линтеры
+
+Проверка стиля и типичных ошибок в Python-коде (ноутбуки и `data/` исключены из flake8):
+
+```bash
+pip install -r requirements.txt
+
+# Все линтеры (через Makefile)
+make lint
+
+# Или по отдельности
+ruff check . --line-length 120
+flake8 . --max-line-length=120 --extend-exclude=.venv,notebooks,data
+```
+
+В CI (`.github/workflows/ci.yml`) запускается `ruff check src/`.
 
 ## Отчёт
 
