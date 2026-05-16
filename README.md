@@ -102,10 +102,11 @@ docker run --rm -p 8888:8888 returns-project
 
 | Модель | Ключевые метрики | Примечание |
 |--------|-------------------|------------|
-| TabM (до обучения) | `ROC-AUC: 0.5570` | Baseline-точка до обучения |
-| CatBoost (основной прогон) | `ROC-AUC: 0.8390` | `iterations=1000`, `depth=6`, `learning_rate=0.05` |
-| CatBoost (порог 0.4) | `F1: 0.7813`, `Precision: 0.7043`, `Recall: 0.8774`, `Accuracy: 0.7375`, `PR-AUC: 0.8609` | Настройка порога классификации |
-| TabM (обученная) | `ROC-AUC: 0.8418`, `F1: 0.7798`, `Accuracy: 0.7563` | Лучший `ROC-AUC` среди указанных |
+| TabM (до обучения, подвыборка 20k) | `ROC-AUC: 0.4332` | Baseline до обучения (`TABM.ipynb`) |
+| CatBoost (полный hold-out) | `ROC-AUC: 0.8390`, `F1: 0.7790` | `сatboost_for_returns.ipynb`, test 169 691 |
+| CatBoost (порог 0.4, event_test) | `ROC-AUC: 0.8373`, `F1: 0.7813`, `PR-AUC: 0.8609` | `сatboost_test.ipynb` |
+| CatBoost (tuned, подвыборка TABM) | `ROC-AUC: 0.7918`, `F1: 0.7543` | Лучший ROC-AUC на сравнении в `TABM.ipynb` |
+| TabM (обученная, подвыборка) | `ROC-AUC: 0.6966`, `F1: 0.7103` | Epoch 8, CPU |
 
 ## Линтеры
 
